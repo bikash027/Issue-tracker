@@ -1,0 +1,44 @@
+@model TaskViewModel
+
+@{
+    ViewData["Title"] = "Add Task";
+}
+
+<h1>Add Task</h1>
+
+@* <h4>Movie</h4> *@
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddTask" asp-route-projectId="@Model.ProjectId">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Deadline" class="control-label"></label>
+                <input asp-for="Deadline" class="form-control" />
+                <span asp-validation-for="Deadline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <select id="userName" asp-for="UserName" asp-items="Model.AllUserNames" class="form-control"></select>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <select id="userId" asp-for="UserId" asp-items="Model.AllUserIds" class="form-control"></select>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to projects</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

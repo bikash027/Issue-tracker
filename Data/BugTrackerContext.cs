@@ -29,6 +29,10 @@ namespace BugTracker.Data{
                 .HasOne(T=> T.Project)
                 .WithMany(P => P.Tasks)
                 .HasForeignKey(T=> T.ProjectId);
+            builder.Entity<Project>()
+                .HasOne<ApplicationUser>()
+                .WithMany()
+                .HasForeignKey(p=> p.ManagerId);
             base.OnModelCreating(builder);
         }
     }

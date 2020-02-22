@@ -70,14 +70,17 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-/* custom rules */
-.card{
-  height: 50px;
-  border-width: 1px;
+/*---------------------custom rules---------------------*/
+.task, .card{
+  min-height: 50px;
+  border : 1px solid cadetblue;
   border-radius: 3px;
-  border-color: cadetblue;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  top: 0;left:0;
 }
-.addProject1{
+.addProject1, .addTask{
   height: 50px;
   width: 50px;
   border-radius: 25px;
@@ -96,7 +99,36 @@ body {
   bottom: 5px;
   z-index: 2;
 }
-.title{
+.addTask{
+  background-image: url('/css/add.svg');
+}
+.addUser1, .projectUser{
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  background-color: chartreuse;
+  display: inline-block;
+  position: relative;
+}
+.addUser2{
+  display: none;
+  height: 50px;
+  width: 235px;
+  position: relative;
+}
+.addUser1 img, .projectUser img{
+  width: 100%;
+}
+.projectUser p{
+  position: absolute;
+  top: -50px;
+  left: 0;
+  /* width: 300px; */
+  display: inline-block;
+  border: 1px solid black;
+  background-color: white;
+}
+.title, .addUser2 #userName{
   width: 145px;
   height: 50px;
   border-top-left-radius: 25px;
@@ -114,4 +146,54 @@ body {
   padding: 0;
   display: inline-block;
   background-color: #cd858f;
+}
+/* .specialForm{
+  height: 82px;
+  width: 313px;
+  position: absolute;
+  left: 0;
+  background-color: rgba(40, 81, 100, 0.555);
+  visibility: hidden;
+  transition: all 
+  transition-property: visibility;
+}
+.specialForm:hover{
+  visibility: visible;
+} */
+.moveAhead{
+  background-image: url('/css/drawing.svg');
+}
+.moveBack{
+  background-image: url('/css/drawing2.svg');
+}
+.specialForm{
+  /* visibility: hidden; */
+  position:absolute;
+  top:0;left:0;
+}
+.specialForm input{
+  display: block;
+  position: absolute;
+  /* top: 41px;
+  left: 156px;
+  transform: translate(-50%, -50%); */
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  border-width: 0;
+  /* background-color: rgba(47, 130, 168, 0.555); */
+}
+
+/* .task div{
+  position:absolute;
+  top:0;
+  left:0;
+} */
+/* .task div div{
+  position: relative;
+} */
+.center{
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }

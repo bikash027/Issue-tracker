@@ -89,10 +89,15 @@ namespace BugTracker.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("ManagerId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ManagerId");
 
                     b.ToTable("Projects");
                 });
@@ -270,6 +275,13 @@ namespace BugTracker.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("BugTracker.Models.Project", b =>
+                {
+                    b.HasOne("BugTracker.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("ManagerId");
                 });
 
             modelBuilder.Entity("BugTracker.Models.ProjectUser", b =>

@@ -1,15 +1,117 @@
-<h3>List of tasks of "project 1"</h3>
-
+@model TasksViewModel
+@{
+    var todo=new List<BugTracker.Models.Task>();
+    var open=new List<BugTracker.Models.Task>();
+    var completed=new List<BugTracker.Models.Task>();
+    foreach (var item in Model.Tasks)
+    {
+        if(item.Stage=="to do")
+            todo.Add(item);
+        else if(item.Stage=="open")
+            open.Add(item);
+        else
+            completed.Add(item);
+    }
+}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+        <h3>Tasks of @Model.project.Title</h3>
+    </div>
+    <div>
+        @if(@Model.isManager){
+            <div class="addUser1" >
+                <img src="/css/add-user.png">
+            </div>
+            <form class="addUser2" asp-action="AddUser" asp-route-projectId="@Model.project.Id">
+                <select id="userName" asp-for="NewUser_name" asp-items="Model.AllUser_names" class="form-control"></select>
+                <select id="userId" asp-for="NewUser_id" asp-items="Model.AllUser_ids" class="form-control"></select>
+                <input class="submitInput" type="submit">
+            </form>
+        }
+        @foreach(var item in @Model.projectUsers){
+            <div class="projectUser">
+                <img src="/css/add-user.png">
+                <p>@item.Name</p>
+            </div>
+        }
+    </div>
+</div>
+<hr><br>
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4">
             <h3>To Do</h3>
+            <hr>
+            @foreach (var item in todo)
+            {
+                <div class="task">
+                    <form class="specialForm" asp-action="TaskStage" asp-route-taskId="@item.Id" asp-route-stage="open">
+                        <input type="submit" class="moveAhead" value="">
+                        @* <button class="moveAhead"><img src="/css/drawing.svg"></button> *@
+                    </form>
+                    <p>@item.Description</p>
+                    <table>
+                        <tr>
+                            <td><p>@item.User.Name &nbsp;&nbsp;</p></td>
+                            <td><p>Deadline: @item.Deadline.ToShortDateString()</p></td>
+                        </tr>
+                    </table>
+                </div>
+            }
         </div>
         <div class="col-sm-12 col-md-6 col-lg-4">
             <h3>Open</h3>
+            <hr>
+            @foreach (var item in open)
+            {
+                <div class="task">
+                    <div class="row">
+                        <div class="col-6">
+                            <form class="specialForm" asp-action="TaskStage" asp-route-taskId="@item.Id" asp-route-stage="to do">
+                                <input type="submit" class="moveBack" value="">
+                                @* <button class="moveBack"><img src="/css/drawing2.svg"></button> *@
+                            </form>
+                        </div>
+                        <div class="col-6">
+                            <form class="specialForm" asp-action="TaskStage" asp-route-taskId="@item.Id" asp-route-stage="completed">
+                                @* <button class="moveAhead"><img src="/css/drawing.svg"></button> *@
+                                <input type="submit" class="moveAhead" value="">
+                            </form>
+                        </div>
+                    </div>
+                    <p>@item.Description</p>
+                    <table>
+                        <tr>
+                            <td><p>@item.User.Name &nbsp;&nbsp;</p></td>
+                            <td><p>Deadline: @item.Deadline.ToShortDateString()</p></td>
+                        </tr>
+                    </table>
+                </div>
+            }
         </div>
         <div class="col-sm-12 col-md-6 col-lg-4">
             <h3>Completed</h3>
+            <hr>
+            @foreach (var item in completed)
+            {
+                <div class="task">
+                    <form class="specialForm" asp-action="TaskStage" asp-route-taskId="@item.Id" asp-route-stage="open">
+                        @* <button class="moveBack"><img src="/css/drawing2.svg"></button> *@
+                        <input type="submit" class="moveBack" value="">
+                    </form>
+                    <p>@item.Description</p>
+                    <table>
+                        <tr>
+                            <td><p>@item.User.Name &nbsp;&nbsp;</p></td>
+                            <td><p>Deadline: @item.Deadline.ToShortDateString()</p></td>
+                        </tr>
+                    </table>
+                </div>
+            }
         </div>
+    </div>
+    <div 
+        class="addTask" 
+        onclick="location.href='/projects/addTask?projectId=@Model.project.Id';">
     </div>
 </div>

@@ -84,3 +84,4 @@ E:\dotnetProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Projects\Index.c
 E:\dotnetProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 E:\dotnetProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Projects\Tasks.cshtml.g.cs
 E:\dotnetProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+E:\dotnetProject\BugTracker\obj\Debug\netcoreapp3.1\Razor\Views\Projects\AddTask.cshtml.g.cs

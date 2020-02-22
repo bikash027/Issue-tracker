@@ -1,0 +1,19 @@
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="50px"
+   height="50px"
+   viewBox="0 0 50 50"
+   style="background-color: #61dafb">
+    <!-- <rect width='297' height='297' fill="#282c34"/> -->
+    <path
+       stroke= "white"
+       stroke-width= "4"
+       d="M 10 25 H 40"
+    />
+    <path
+       stroke= "white"
+       stroke-width= "4"
+       d="M 25 10 V 40"
+    />
+</svg>
